@@ -1,0 +1,22 @@
+apiVersion: apps/v1
+kind: ReplicaSet
+metadata:
+  name: demo
+  labels:
+    app: demo
+    type: web
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      type: web
+  template:
+    metadata:
+      labels:
+        type: web
+    spec:
+      containers:
+      - name: demo-nginx
+        image: nginx
+        ports:
+        - containerPort: 80
